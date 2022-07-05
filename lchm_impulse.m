@@ -13,7 +13,7 @@ s_t = A*cos(2*pi*f_n.*t + 2*pi*d_f.*t.^2./(2*tau_imp));
 figure; 
 plot(s_t);
 grid on
-s_t_n= [s_t zeros(1,round(fs*T_imp)-length(s_t))];
+s_t_n= [s_t zeros(1,round(f_s*T_imp)-length(s_t))];
 %добавление нулей в соответсвии с периодом и длинной импульса 
 s_t_p= repmat(s_t_n,1,n_inmp); %учтановка числа повторений 
 figure;
