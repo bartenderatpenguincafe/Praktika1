@@ -7,3 +7,4 @@ figure
 plot(y_new)
 ylim([0 1])
 grid on 
+
