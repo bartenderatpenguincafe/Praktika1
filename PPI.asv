@@ -1,0 +1,44 @@
+close all 
+clear 
+A = 1; %амплитуда сигнала
+fs = 1e8;%частота дискретизации 
+tau_imp = 10e-6;%длина импульса 
+T_imp = 10e-5;%период импульса 
+d_T_imp = 10e-5;
+n_inmp = 10; %число повторений импульсов 
+t=0:1/fs:tau_imp-1/fs;%градуировка 
+
+f_n = 0; 
+s_t = A*exp(1i*(2*pi*f_n.*t.^2./2*tau_imp)); %еденичный импульс
+
+%----------------------Плавно возрастающий период-------------------------%
+s_t_b = [];
+for i=1:n_inmp 
+    s_t_n= [s_t zeros(1,round(fs*T_imp)-length(s_t))];
+    s_t_b = [s_t_b s_t_n];
+    T_imp = T_imp + d_T_imp;
+end
+figure 
+plot (s_t_b);
+grid on
+%---------------------Массивно изменяющийся период------------------------%
+
+
+M_T_imp = 1e-5*randi([10 100],1,10);%задан рандомно ради чистоты эксперимента
+
+s_t_b = [];
+for i=1:n_inmp 
+    s_t_n= [s_t zeros(1,round(fs*M_T_imp(i)-length(s_t))];
+    s_t_b = [s_t_b s_t_n];
+    M_T_imp(i+1);
+end
+figure 
+plot (s_t_b);
+grid on
+
+
+
+
+
+
+
